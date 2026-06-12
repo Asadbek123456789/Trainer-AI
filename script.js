@@ -1,6 +1,3 @@
-/* =========================================================
-   1) FIREBASE SOZLAMALARI
-   ========================================================= */
 const firebaseConfig = {
   apiKey: "AIzaSyAnVhvWLzneU01NOA7M7V8OE0uRT5bSLwY",
   authDomain: "trainer-ai-a9a70.firebaseapp.com",
