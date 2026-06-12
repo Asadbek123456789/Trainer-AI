@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronDaily — Kundalik mashqlar</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+<!-- Fon rasmi -->
+<div class="bg-image"></div>
+<div class="bg-overlay"></div>
+ 
+<!-- ===================== LOGIN OYNASI ===================== -->
+<section id="loginScreen" class="screen center">
+  <div class="glass-card login-card">
+    <h1 class="logo">IRON<span>DAILY</span></h1>
+    <p class="subtitle">Kuchni har kuni nazorat qiling</p>
+    <button id="googleBtn" class="btn btn-accent btn-google">
+      <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5h-1.9V20H24v8h11.3c-1.6 4.7-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.2-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 7.1 29.6 5 24 5c-7.7 0-14.3 4.4-17.7 9.7z"/><path fill="#4CAF50" d="M24 45c5.5 0 10.4-1.9 13.9-5.1l-6.4-5.4C29.6 36 26.9 37 24 37c-5.3 0-9.7-3.3-11.3-8l-6.6 5.1C9.6 40.5 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H24v8h11.3c-1 2.9-2.9 5.3-5.4 6.9l6.4 5.4C40.6 37.1 44 31.1 44 24c0-1.2-.1-2.4-.4-3.5z"/></svg>
+      Google orqali kirish
+    </button>
+    <p class="hint">Hisobingiz avtomatik saqlanadi va keyingi kirishda barcha ma'lumotlaringiz tayyor turadi.</p>
+  </div>
+</section>
+ 
+<!-- ===================== PROFIL SO'ROVI (birinchi marta) ===================== -->
+<section id="profileScreen" class="screen center hidden">
+  <div class="glass-card">
+    <h2 class="section-title">Ma'lumotlaringizni kiriting</h2>
+    <div class="form-grid">
+      <label>Yosh
+        <input type="number" id="ageInput" placeholder="masalan: 22" min="5" max="100">
+      </label>
+      <label>Bo'y (sm)
+        <input type="number" id="heightInput" placeholder="masalan: 175" min="50" max="250">
+      </label>
+      <label>Vazn (kg)
+        <input type="number" id="weightInput" placeholder="masalan: 68" min="10" max="300">
+      </label>
+    </div>
+    <button id="saveProfileBtn" class="btn btn-accent">Saqlash va davom etish</button>
+  </div>
+</section>
+ 
+<!-- ===================== ASOSIY SAYT ===================== -->
+<section id="appScreen" class="screen hidden">
+  <header class="topbar glass-card">
+    <div class="user-info">
+      <img id="userPhoto" class="avatar" src="" alt="avatar">
+      <div>
+        <p class="user-name" id="userName">Foydalanuvchi</p>
+        <p class="user-stats" id="userStats"></p>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="scheduleTab">📅 Jadval</button>
+      <button class="tab-btn" data-tab="workoutTab">💪 Mashqlar</button>
+      <button class="tab-btn" data-tab="aiTab">🤖 AI Maslahat</button>
+    </nav>
+    <button id="logoutBtn" class="btn btn-ghost">Chiqish</button>
+  </header>
+ 
+  <main class="content">
+ 
+    <!-- JADVAL TAB -->
+    <div id="scheduleTab" class="tab-content active">
+      <div class="glass-card">
+        <h2 class="section-title">⏰ Mashg'ulot vaqtini belgilang</h2>
+        <div class="form-row">
+          <label>Trenirovka vaqti
+            <input type="time" id="workoutTime">
+          </label>
+          <button id="saveTimeBtn" class="btn btn-accent">Saqlash</button>
+        </div>
+        <p class="hint" id="timeHint"></p>
+        <p class="hint">Brauzer bildirishnomasiga ruxsat berilganligini tekshiring — har kuni shu vaqtda eslatma keladi.</p>
+        <button id="notifPermBtn" class="btn btn-ghost">🔔 Bildirishnomaga ruxsat berish</button>
+      </div>
+ 
+      <div class="glass-card">
+        <h2 class="section-title">📊 Bugungi holat</h2>
+        <div class="progress-wrap">
+          <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+          <p id="progressText">0 / 7 mashq bajarildi</p>
+        </div>
+        <button id="finishDayBtn" class="btn btn-accent">✅ Kunlik mashqni yakunlash</button>
+        <p class="hint" id="lastFinished"></p>
+      </div>
+    </div>
+ 
+    <!-- MASHQLAR TAB -->
+    <div id="workoutTab" class="tab-content">
+      <h2 class="section-title">🏋️‍♂️ Kundalik mashqlar ketma-ketligi</h2>
+      <div class="exercise-grid" id="exerciseGrid"><!-- JS orqali to'ldiriladi --></div>
+    </div>
+ 
+    <!-- AI TAB -->
+    <div id="aiTab" class="tab-content">
+      <div class="glass-card">
+        <h2 class="section-title">🤖 AI Murabbiy maslahati</h2>
+        <button id="aiAdviceBtn" class="btn btn-accent">Maslahat olish</button>
+        <div id="aiOutput" class="ai-output"></div>
+      </div>
+    </div>
+ 
+  </main>
+</section>
+ 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
