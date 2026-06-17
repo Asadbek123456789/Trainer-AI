@@ -60,17 +60,22 @@ let userData = null;
 let notifyTimer = null;
 
 /* =========================================================
-   3) AUTH (TUZATILGAN: signInWithPopup)
+   3) AUTH (TUZATILGAN: signInWithPopup va parametrlash)
    ========================================================= */
 googleBtn.addEventListener('click', async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
+  
+  // Windows'dagi 'ms-cortana' xatosini oldini olish uchun qo'shimcha parametrlar
+  provider.setCustomParameters({
+    'display': 'popup'
+  });
+
   try {
-    // ms-cortana xatosini oldini olish uchun Popup usuli
     await auth.signInWithPopup(provider);
   } catch (err) {
     console.error("Auth Xatosi:", err);
     if (err.code === 'auth/popup-blocked') {
-      alert("Iltimos, brauzeringizda qalqib chiquvchi oynalarga (pop-up) ruxsat bering.");
+      alert("Iltimos, brauzerda pop-up oynalarga ruxsat bering (manzil satri o'ng tomoniga qarang).");
     } else {
       alert("Kirishda xatolik: " + err.message);
     }
@@ -110,7 +115,7 @@ function showScreen(name) {
 }
 
 /* =========================================================
-   4) YORDAMCHI FUNKSIYALAR (Profil, Render, Progress)
+   4) YORDAMCHI FUNKSIYALAR
    ========================================================= */
 saveProfileBtn.addEventListener('click', async () => {
   const age = parseInt(ageInput.value);
